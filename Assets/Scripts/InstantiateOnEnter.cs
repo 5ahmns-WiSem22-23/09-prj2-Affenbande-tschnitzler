@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class InstantiateOnEnter : MonoBehaviour
 {
-    public GameObject[] prefabList = null;
+    public GameObject[] prefabList;
+    public GameObject[] coordinates;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
             int randomInt = Random.Range(0,prefabList.Length);
-            Instantiate(prefabList[randomInt], transform.position, transform.rotation);
+            Instantiate(prefabList[randomInt], coordinates[randomInt]., transform.rotation);
         }
     }
 }
