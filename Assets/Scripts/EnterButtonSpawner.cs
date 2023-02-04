@@ -12,6 +12,7 @@ public class EnterButtonSpawner : MonoBehaviour
     public string[] playerNames;
     public TextMeshProUGUI winText;
     private bool canSpawn = true;
+    public GameObject players;
 
     private int[] spawnCounters;
 
@@ -34,6 +35,7 @@ public class EnterButtonSpawner : MonoBehaviour
             if (spawnCounters[randomIndex] == 5)
             {
                 DeleteSpawnedObjects();
+                players.SetActive(false);
                 winText.text = "Player " + playerNames[randomIndex] + " wins!";
                 StopSpawning();
                 winText.gameObject.SetActive(true);
