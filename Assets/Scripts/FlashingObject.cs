@@ -6,8 +6,8 @@ public class FlashingObject : MonoBehaviour
 {
     private void Awake()
     {
-        gameObject.SetActive(true);
-        InvokeRepeating("FlashObject", 0f, 0.7f);
+        gameObject.SetActive(false);
+        InvokeRepeating("FlashObject", 0f, 1.2f);
     }
 
     private void Update()

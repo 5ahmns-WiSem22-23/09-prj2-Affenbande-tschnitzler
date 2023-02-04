@@ -34,7 +34,7 @@ public class EnterButtonSpawner : MonoBehaviour
             spawnCounters[randomIndex]++;
             if (spawnCounters[randomIndex] == 5)
             {
-                winText.text = "Player " + playerNames[randomIndex] + " won!";
+                winText.text = "Player " + playerNames[randomIndex] + " wins!";
                 StopSpawning();
                 winText.gameObject.SetActive(true);
                 //panel.SetActive(true);
