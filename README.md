@@ -12,7 +12,7 @@ Die Spieler müssen sich zuerst entscheiden, wer welchen Player (1-4) nimmt und 
 Wer zuerst 5 seiner Objekte spawnt, hat gewonnen.
 
 ### TASTENLAYOUT
-Enter - Objekt Spawnen (Würfeln)
+Enter - Objekt Spawnen (Würfeln)  
 Esc - Exit
 
 ### PREVIEW
