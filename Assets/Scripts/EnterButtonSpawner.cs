@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EnterButtonSpawner : MonoBehaviour
 {
@@ -11,9 +12,10 @@ public class EnterButtonSpawner : MonoBehaviour
     public string[] playerNames;
     public TextMeshProUGUI winText;
     public GameObject panel;
-    public GameObject SpawnManager;
+    private bool canSpawn = true;
 
     private int[] spawnCounters;
+
 
     private void Start()
     {
@@ -22,7 +24,7 @@ public class EnterButtonSpawner : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && canSpawn)
         {
             int randomIndex = Random.Range(0, prefabsToSpawn.Length);
             GameObject prefabToInstantiate = prefabsToSpawn[randomIndex];
@@ -33,10 +35,20 @@ public class EnterButtonSpawner : MonoBehaviour
             if (spawnCounters[randomIndex] == 5)
             {
                 winText.text = "Player " + playerNames[randomIndex] + " won!";
+                StopSpawning();
                 winText.gameObject.SetActive(true);
                 panel.SetActive(true);
-                SpawnManager.SetActive(false); 
+                StartCoroutine(RestartAfterDelay());
             }
         }
+    }
+    IEnumerator RestartAfterDelay()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    void StopSpawning()
+    {
+        canSpawn = false;
     }
 }
