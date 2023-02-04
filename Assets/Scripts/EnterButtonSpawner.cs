@@ -11,7 +11,6 @@ public class EnterButtonSpawner : MonoBehaviour
     public Vector3[] offsets;
     public string[] playerNames;
     public TextMeshProUGUI winText;
-    public GameObject panel;
     private bool canSpawn = true;
 
     private int[] spawnCounters;
@@ -34,10 +33,10 @@ public class EnterButtonSpawner : MonoBehaviour
             spawnCounters[randomIndex]++;
             if (spawnCounters[randomIndex] == 5)
             {
+                DeleteSpawnedObjects();
                 winText.text = "Player " + playerNames[randomIndex] + " wins!";
                 StopSpawning();
                 winText.gameObject.SetActive(true);
-                //panel.SetActive(true);
                 StartCoroutine(RestartAfterDelay());
             }
         }
@@ -46,9 +45,21 @@ public class EnterButtonSpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
     }
     void StopSpawning()
     {
         canSpawn = false;
+    }
+    void DeleteSpawnedObjects()
+    {
+        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.tag == "Prefab")
+            {
+                Destroy(obj);
+            }
+        }
     }
 }
