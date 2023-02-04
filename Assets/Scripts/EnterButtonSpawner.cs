@@ -37,7 +37,7 @@ public class EnterButtonSpawner : MonoBehaviour
                 winText.text = "Player " + playerNames[randomIndex] + " won!";
                 StopSpawning();
                 winText.gameObject.SetActive(true);
-                panel.SetActive(true);
+                //panel.SetActive(true);
                 StartCoroutine(RestartAfterDelay());
             }
         }
